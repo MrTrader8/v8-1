@@ -152,6 +152,9 @@ class V8_EXPORT_PRIVATE TurboAssembler : public TurboAssemblerBase {
                   Register scratch = no_reg);
   void LoadFloat32(DoubleRegister dst, const MemOperand& mem,
                    Register scratch = no_reg);
+  void LoadSimd128(Simd128Register dst, const MemOperand& mem,
+                   Register scratch = no_reg);
+
   void LoadDoubleLiteral(DoubleRegister result, Double value, Register scratch);
 
   // load a literal signed int value <value> to GPR <dst>

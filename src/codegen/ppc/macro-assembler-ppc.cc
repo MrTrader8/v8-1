@@ -2666,6 +2666,13 @@ void TurboAssembler::LoadFloat32(DoubleRegister dst, const MemOperand& mem,
   }
 }
 
+void TurboAssembler::LoadSimd128(Simd128Register dst, const MemOperand& mem,
+                                 Register scratch) {
+  DCHECK(is_uint16(mem.offset()));
+  Register base = mem.ra();
+  lvx(dst, MemOperand(base, scratch));
+}
+
 void MacroAssembler::LoadDoubleU(DoubleRegister dst, const MemOperand& mem,
                                  Register scratch) {
   Register base = mem.ra();

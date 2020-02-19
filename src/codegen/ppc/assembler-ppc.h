@@ -920,6 +920,8 @@ class Assembler : public AssemblerBase {
              const DoubleRegister frc, const DoubleRegister frb,
              RCBit rc = LeaveRC);
 
+  void lvx(const DoubleRegister frt, const MemOperand& src);
+
   // Pseudo instructions
 
   // Different nop operations are used by the code generator to detect certain

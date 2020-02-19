@@ -923,6 +923,8 @@ class Assembler : public AssemblerBase {
   void fmsub(const DoubleRegister frt, const DoubleRegister fra,
              const DoubleRegister frc, const DoubleRegister frb,
              RCBit rc = LeaveRC);
+  
+  void lvx(const DoubleRegister frt, const MemOperand& src);
 
   // Pseudo instructions
 

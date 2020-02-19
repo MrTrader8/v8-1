@@ -1757,6 +1757,17 @@ void Assembler::fmsub(const DoubleRegister frt, const DoubleRegister fra,
        frc.code() * B6 | rc);
 }
 
+void Assembler::lvx(const DoubleRegister vrt, const MemOperand& src){
+  int offset = src.offset();
+  Register ra = src.ra();
+  CHECK(is_int16(offset));
+  DCHECK(ra != r0);
+  int imm16 = offset & kImm16Mask;
+  // could be x_form instruction with some casting magic
+  emit(LVX | vrt.code() * B21 | ra.code() * B16 | imm16);
+  
+}
+
 // Pseudo instructions.
 void Assembler::nop(int type) {
   Register reg = r0;

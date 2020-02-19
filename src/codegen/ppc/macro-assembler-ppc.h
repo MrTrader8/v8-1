@@ -152,6 +152,9 @@ class V8_EXPORT_PRIVATE TurboAssembler : public TurboAssemblerBase {
                   Register scratch = no_reg);
   void LoadFloat32(DoubleRegister dst, const MemOperand& mem,
                    Register scratch = no_reg);
+  void LoadSimd128(Simd128Register dst, const MemOperand& mem,
+                  Register scratch = no_reg);
+
   void LoadDoubleLiteral(DoubleRegister result, Double value, Register scratch);
 
   // load a literal signed int value <value> to GPR <dst>
@@ -175,6 +178,9 @@ class V8_EXPORT_PRIVATE TurboAssembler : public TurboAssemblerBase {
                    Register scratch = no_reg);
   void StoreSingleU(DoubleRegister src, const MemOperand& mem,
                     Register scratch = no_reg);
+
+  /*void StoreSimd128(Simd128Register src, const MemOperand& mem,
+                    Register scratch = no_reg);*/
 
   void Cmpi(Register src1, const Operand& src2, Register scratch,
             CRegister cr = cr7);
@@ -318,6 +324,14 @@ class V8_EXPORT_PRIVATE TurboAssembler : public TurboAssemblerBase {
   void SwapDouble(DoubleRegister src, MemOperand dst, DoubleRegister scratch);
   void SwapDouble(MemOperand src, MemOperand dst, DoubleRegister scratch_0,
                   DoubleRegister scratch_1);
+  /*
+  void SwapSimd128(Simd128Register src, Simd128Register dst,
+                   Simd128Register scratch);
+  void SwapSimd128(Simd128Register src, MemOperand dst,
+                   Simd128Register scratch);
+  void SwapSimd128(MemOperand src, MemOperand dst, Simd128Register scratch_0,
+                   Simd128Register scratch_1); 
+  */
 
   // Before calling a C-function from generated code, align arguments on stack.
   // After aligning the frame, non-register arguments must be stored in

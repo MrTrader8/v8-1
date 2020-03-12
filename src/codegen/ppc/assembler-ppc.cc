@@ -1758,14 +1758,10 @@ void Assembler::fmsub(const DoubleRegister frt, const DoubleRegister fra,
 }
 
 void Assembler::lvx(const DoubleRegister vrt, const MemOperand& src){
-  int offset = src.offset();
   Register ra = src.ra();
-  CHECK(is_int16(offset));
+  Register rb = src.rb();
   DCHECK(ra != r0);
-  int imm16 = offset & kImm16Mask;
-  // could be x_form instruction with some casting magic
-  emit(LVX | vrt.code() * B21 | ra.code() * B16 | imm16);
-  
+  emit(LVX | vrt.code() * B21 | ra.code() * B16 | rb.code() * B11 | LeaveRC);
 }
 
 // Pseudo instructions.

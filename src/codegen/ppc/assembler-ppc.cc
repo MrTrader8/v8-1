@@ -1757,6 +1757,13 @@ void Assembler::fmsub(const DoubleRegister frt, const DoubleRegister fra,
        frc.code() * B6 | rc);
 }
 
+void Assembler::lvx(const DoubleRegister vrt, const MemOperand& src){
+  Register ra = src.ra();
+  Register rb = src.rb();
+  DCHECK(ra != r0);
+  emit(LVX | vrt.code() * B21 | ra.code() * B16 | rb.code() * B11 | LeaveRC);
+}
+
 // Pseudo instructions.
 void Assembler::nop(int type) {
   Register reg = r0;

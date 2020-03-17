@@ -1991,6 +1991,13 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
     case kPPC_LoadDouble:
       ASSEMBLE_LOAD_FLOAT(lfd, lfdx);
       break;
+    case kPPC_LoadSimd128: {
+      AddressingMode mode = kMode_None;
+      MemOperand operand = i.MemoryOperand(&mode);
+      __ lvx(i.OutputSimd128Register(), operand);
+      EmitWordLoadPoisoningIfNeeded(this, instr, i);
+      break;
+    }
     case kPPC_StoreWord8:
       ASSEMBLE_STORE_INTEGER(stb, stbx);
       break;

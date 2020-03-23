@@ -2023,6 +2023,13 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
     case kPPC_StoreDouble:
       ASSEMBLE_STORE_FLOAT(stfd, stfdx);
       break;
+    case kPPC_StoreSimd128: {
+      size_t index = 0;
+      AddressingMode mode = kMode_None;
+      MemOperand operand = i.MemoryOperand(&mode, &index);
+      __ stvx(i.InputSimd128Register(index), operand, Condition(0));
+      break;
+    }
     case kWord32AtomicLoadInt8:
     case kPPC_AtomicLoadUint8:
     case kWord32AtomicLoadInt16:

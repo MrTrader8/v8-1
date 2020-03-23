@@ -2737,6 +2737,11 @@ void TurboAssembler::StoreDoubleU(DoubleRegister src, const MemOperand& mem,
   }
 }
 
+void TurboAssembler::StoreSimd128(Simd128Register src, const MemOperand& mem) {
+  DCHECK(is_uint12(mem.offset()));
+  stvx(src, mem, Condition(0));
+}
+
 void TurboAssembler::StoreSingle(DoubleRegister src, const MemOperand& mem,
                                  Register scratch) {
   Register base = mem.ra();

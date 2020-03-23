@@ -174,6 +174,9 @@ class V8_EXPORT_PRIVATE TurboAssembler : public TurboAssemblerBase {
   void StoreDoubleU(DoubleRegister src, const MemOperand& mem,
                     Register scratch = no_reg);
 
+  void StoreSimd128(Simd128Register src, const MemOperand& mem,
+                    Register scratch = no_reg);
+
   void StoreSingle(DoubleRegister src, const MemOperand& mem,
                    Register scratch = no_reg);
   void StoreSingleU(DoubleRegister src, const MemOperand& mem,

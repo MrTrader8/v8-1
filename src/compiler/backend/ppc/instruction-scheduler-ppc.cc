@@ -138,6 +138,7 @@ int InstructionScheduler::GetTargetInstructionFlags(
     case kPPC_StoreWord64:
     case kPPC_StoreFloat32:
     case kPPC_StoreDouble:
+    case kPPC_StoreSimd128:
     case kPPC_Push:
     case kPPC_PushFrame:
     case kPPC_StoreToStackSlot:

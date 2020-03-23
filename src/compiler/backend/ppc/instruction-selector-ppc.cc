@@ -325,7 +325,9 @@ void InstructionSelector::VisitStore(Node* node) {
 #endif
       case MachineRepresentation::kCompressedPointer:  // Fall through.
       case MachineRepresentation::kCompressed:         // Fall through.
-      case MachineRepresentation::kSimd128:  // Fall through.
+      case MachineRepresentation::kSimd128:
+        opcode = kPPC_StoreSimd128;
+        break;
       case MachineRepresentation::kNone:
         UNREACHABLE();
         return;

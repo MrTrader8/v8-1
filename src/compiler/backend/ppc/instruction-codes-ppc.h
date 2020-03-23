@@ -188,7 +188,8 @@ namespace compiler {
   V(PPC_AtomicXorInt16)              \
   V(PPC_AtomicXorInt32)              \
   V(PPC_AtomicXorInt64)              \
-  V(PPC_LoadSimd128)
+  V(PPC_LoadSimd128)                 \
+  V(PPC_StoreSimd128)
 
 // Addressing modes represent the "shape" of inputs to an instruction.
 // Many instructions support multiple addressing modes. Addressing modes

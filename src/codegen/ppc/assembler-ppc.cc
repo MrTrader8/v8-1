@@ -1761,9 +1761,8 @@ void Assembler::lvx(const DoubleRegister vrt, const MemOperand& src){
   Register ra = src.ra();
   Register rb = src.rb();
   DCHECK(ra != r0);
-  emit(LVX | vrt.code() * B21 | ra.code() * B16 | rb.code() * B11 | LeaveRC);
+  x_form(LVX, vrt, ra, rb, LeaveRC);
 }
-
 // Pseudo instructions.
 void Assembler::nop(int type) {
   Register reg = r0;

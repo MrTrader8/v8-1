@@ -179,9 +179,6 @@ class V8_EXPORT_PRIVATE TurboAssembler : public TurboAssemblerBase {
   void StoreSingleU(DoubleRegister src, const MemOperand& mem,
                     Register scratch = no_reg);
 
-  /*void StoreSimd128(Simd128Register src, const MemOperand& mem,
-                    Register scratch = no_reg);*/
-
   void Cmpi(Register src1, const Operand& src2, Register scratch,
             CRegister cr = cr7);
   void Cmpli(Register src1, const Operand& src2, Register scratch,

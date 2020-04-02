@@ -364,6 +364,10 @@ class Assembler : public AssemblerBase {
                      EHBit eh = SetEH) {
     emit(instr | rs.code() * B21 | ra.code() * B16 | rb.code() * B11 | eh);
   }
+  inline void x_form(Instr instr, DoubleRegister vrt, Register ra, Register rb,
+                     RCBit rc) {
+    emit(instr | vrt.code() * B21 | ra.code() * B16 | rb.code() * B11 | rc);
+  }
   inline void x_form(Instr instr, CRegister cr, Register s1, Register s2,
                      RCBit rc) {
 #if V8_TARGET_ARCH_PPC64
@@ -919,7 +923,7 @@ class Assembler : public AssemblerBase {
   void fmsub(const DoubleRegister frt, const DoubleRegister fra,
              const DoubleRegister frc, const DoubleRegister frb,
              RCBit rc = LeaveRC);
-
+  
   void lvx(const DoubleRegister vrt, const MemOperand& src);
 
   // Pseudo instructions

@@ -2178,7 +2178,9 @@ using Instr = uint32_t;
 
 #define PPC_XX4_OPCODE_LIST(V) \
   /* VSX Select */             \
-  V(xxsel, XXSEL, 0xF0000030)
+  V(xxsel, XXSEL, 0xF0000030)  \
+  /* VSX Vector Byte-Reverse Quadword*/
+  V(xxbrq, XXBRQ, 0xF01F01DB)
 
 #define PPC_I_OPCODE_LIST(V) \
   /* Branch */               \

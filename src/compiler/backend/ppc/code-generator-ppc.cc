@@ -2004,7 +2004,7 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
     }
     case kPPC_LoadReverseSimd128RR:
-      //TODO(gaoandre): implement 
+      //TODO(gaoandre): implement
       break;
     case kPPC_LoadReverseSimd128: {
       Simd128Register result = i.OutputSimd128Register();
@@ -2050,7 +2050,16 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       break;
     }
     case kPPC_StoreReverseSimd128: {
-      //TODO(gaoandre): implement 
+      size_t index = 0;
+      AddressingMode mode = kMode_None;
+      MemOperand operand = i.MemoryOperand(&mode, &index);
+      Simd128Register value = i.InputSimd128Register(index);
+      bool is_atomic = i.InputInt32(3);
+      if (is_atomic) __ lwsync();
+      // stvx only supports MRR.
+      DCHECK_EQ(mode, kMode_MRR);
+      __ stvx(result, operand);
+      __ xxbrq(result, result);
       break;
     }
     case kWord32AtomicLoadInt8:

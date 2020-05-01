@@ -2007,9 +2007,12 @@ CodeGenerator::CodeGenResult CodeGenerator::AssembleArchInstruction(
       //TODO(gaoandre): implement 
       break;
     case kPPC_LoadReverseSimd128: {
+      Simd128Register result = i.OutputSimd128Register();
       AddressingMode mode = kMode_None;
       MemOperand operand = i.MemoryOperand(&mode);
-      __ xxbrq(i.OutputSimd128Register(), operand);
+      DCHECK_EQ(mode, kMode_MRR);
+      __ lvx(result, operand);
+      __ xxbrq(result, result);
       break;
     }
     case kPPC_StoreWord8:

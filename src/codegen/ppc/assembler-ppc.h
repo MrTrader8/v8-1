@@ -424,7 +424,7 @@ class Assembler : public AssemblerBase {
     int BX = ((b.code() & 0x20) >> 5) & 0x1;
     int TX = ((t.code() & 0x20) >> 5) & 0x1;
 
-    emit(instr | (t.code() & 0x1F) * B21 | (b.code() & 0x1F) * B11 | TX);
+    emit(instr | (t.code() & 0x1F) * B21 | (b.code() & 0x1F) * B11 | BX | TX);
   }
 
   PPC_XX2_OPCODE_LIST(DECLARE_PPC_XX2_INSTRUCTIONS)
